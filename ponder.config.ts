@@ -1,7 +1,8 @@
 import { createConfig } from "ponder";
 import { http } from "viem";
 
-import { weth9Abi } from "./abis/weth9Abi";
+import { rsSpokePoolAbi } from "./abis/rsSpokePoolAbi";
+import { originAbi } from "./abis/originAbi";
 
 export default createConfig({
   ordering: "multichain",
@@ -18,20 +19,40 @@ export default createConfig({
       chainId: 10,
       transport: http(process.env.PONDER_RPC_URL_10),
     },
-    polygon: {
-      chainId: 137,
-      transport: http(process.env.PONDER_RPC_URL_137),
+    arbitrum: {
+      chainId: 42161,
+      transport: http(process.env.PONDER_RPC_URL_42161),
     },
   },
   contracts: {
-    weth9: {
-      abi: weth9Abi,
+    rsSpokePool: {
+      abi: rsSpokePoolAbi,
       startBlock: "latest",
       network: {
-        mainnet: { address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" },
-        base: { address: "0x4200000000000000000000000000000000000006" },
-        optimism: { address: "0x4200000000000000000000000000000000000006" },
-        polygon: { address: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619" },
+        mainnet: { address: "0x000000000060f6e853447881951574CDd0663530" },
+        base: { address: "0x000000000060f6e853447881951574CDd0663530" },
+        optimism: { address: "0x000000000060f6e853447881951574CDd0663530" },
+        arbitrum: { address: "0x000000000060f6e853447881951574CDd0663530" },
+      },
+    },
+    originModule: {
+      abi: originAbi,
+      startBlock: "latest",
+      network: {
+        mainnet: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
+        base: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
+        optimism: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
+        arbitrum: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
+      },
+    },
+    sameChainModule: {
+      abi: originAbi,
+      startBlock: "latest",
+      network: {
+        mainnet: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
+        base: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
+        optimism: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
+        arbitrum: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
       },
     },
   },

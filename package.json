@@ -12,8 +12,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "ponder": "^0.10.18",
+    "@typescript-eslint/eslint-plugin": "^8.31.0",
     "hono": "^4.5.0",
+    "ponder": "^0.10.18",
     "viem": "^2.21.3"
   },
   "devDependencies": {
