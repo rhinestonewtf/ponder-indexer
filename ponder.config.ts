@@ -24,6 +24,10 @@ export default createConfig({
       chainId: 42161,
       transport: http(process.env.PONDER_RPC_URL_42161),
     },
+    polygon: {
+      chainId: 137,
+      transport: http(process.env.PONDER_RPC_URL_137),
+    },
     // Testnets
     sepolia: {
       chainId: 11155111,
