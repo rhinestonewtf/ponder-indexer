@@ -1,6 +1,6 @@
 import { ponder } from "ponder:registry";
 import { ORCHESTRATOR_DEV_URL, ORCHESTRATOR_URL } from "./utils/constants";
-import { getIsDev, sendToOrchestrator } from "./utils/orchestrator";
+import { sendToOrchestrator } from "./utils/orchestrator";
 
 ponder.on("rsSpokePool:Filled", async ({ event, context }) => {
   const data = {

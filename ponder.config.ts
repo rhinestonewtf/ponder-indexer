@@ -28,6 +28,10 @@ export default createConfig({
       chainId: 137,
       transport: http(process.env.PONDER_RPC_URL_137),
     },
+    zksync: {
+      chainId: 324,
+      transport: http(process.env.PONDER_RPC_URL_324),
+    },
     // Testnets
     sepolia: {
       chainId: 11155111,
@@ -55,6 +59,8 @@ export default createConfig({
         base: { address: "0x000000000060f6e853447881951574CDd0663530" },
         optimism: { address: "0x000000000060f6e853447881951574CDd0663530" },
         arbitrum: { address: "0x000000000060f6e853447881951574CDd0663530" },
+        polygon: { address: "0x000000000060f6e853447881951574CDd0663530" },
+        zksync: { address: "0x000000000060f6e853447881951574CDd0663530" },
         sepolia: { address: "0x000000000060f6e853447881951574CDd0663530" },
         baseSepolia: { address: "0x000000000060f6e853447881951574CDd0663530" },
         optimismSepolia: {
@@ -73,6 +79,8 @@ export default createConfig({
         base: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
         optimism: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
         arbitrum: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
+        polygon: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
+        zksync: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
         sepolia: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
         baseSepolia: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
         optimismSepolia: {
@@ -91,6 +99,8 @@ export default createConfig({
         base: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
         optimism: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
         arbitrum: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
+        polygon: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
+        zksync: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
         sepolia: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
         baseSepolia: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
         optimismSepolia: {
