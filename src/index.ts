@@ -1,6 +1,5 @@
 import { ponder } from "ponder:registry";
-import { ORCHESTRATOR_DEV_URL, ORCHESTRATOR_URL } from "./utils/constants";
-import { sendToOrchestrator } from "./utils/orchestrator";
+import { getEnvironment, sendToOrchestrator } from "./utils/orchestrator";
 
 ponder.on("rsSpokePool:Filled", async ({ event, context }) => {
   const data = {
@@ -14,15 +13,12 @@ ponder.on("rsSpokePool:Filled", async ({ event, context }) => {
     },
   };
 
-  await sendToOrchestrator({
-    data,
-    orchestratorUrl: ORCHESTRATOR_DEV_URL,
-    orchestratorApiKey: process.env.ORCHESTRATOR_DEV_API_KEY!,
+  const environment = getEnvironment({
+    nonce: event.args.nonce,
   });
   await sendToOrchestrator({
     data,
-    orchestratorUrl: ORCHESTRATOR_URL,
-    orchestratorApiKey: process.env.ORCHESTRATOR_API_KEY!,
+    environment,
   });
 });
 
@@ -38,15 +34,12 @@ ponder.on("originModule:Deposited", async ({ event, context }) => {
     },
   };
 
-  await sendToOrchestrator({
-    data,
-    orchestratorUrl: ORCHESTRATOR_DEV_URL,
-    orchestratorApiKey: process.env.ORCHESTRATOR_DEV_API_KEY!,
+  const environment = getEnvironment({
+    nonce: event.args.nonce,
   });
   await sendToOrchestrator({
     data,
-    orchestratorUrl: ORCHESTRATOR_URL,
-    orchestratorApiKey: process.env.ORCHESTRATOR_API_KEY!,
+    environment,
   });
 });
 
@@ -62,14 +55,11 @@ ponder.on("sameChainModule:Deposited", async ({ event, context }) => {
     },
   };
 
-  await sendToOrchestrator({
-    data,
-    orchestratorUrl: ORCHESTRATOR_DEV_URL,
-    orchestratorApiKey: process.env.ORCHESTRATOR_DEV_API_KEY!,
+  const environment = getEnvironment({
+    nonce: event.args.nonce,
   });
   await sendToOrchestrator({
     data,
-    orchestratorUrl: ORCHESTRATOR_URL,
-    orchestratorApiKey: process.env.ORCHESTRATOR_API_KEY!,
+    environment,
   });
 });

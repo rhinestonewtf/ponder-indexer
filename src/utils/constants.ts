@@ -1,8 +1,9 @@
 export const ORCHESTRATOR_URL =
-  process.env.ORCHESTRATOR_URL ?? "https://orchestrator.rhinestone.wtf";
+  process.env.ORCHESTRATOR_URL ?? "https://orchestrator.rhinestone.dev";
 
 export const ORCHESTRATOR_DEV_URL =
-  process.env.ORCHESTRATOR_DEV_URL ?? "https://dev.orchestrator.rhinestone.wtf";
+  process.env.ORCHESTRATOR_DEV_URL ?? "https://dev.orchestrator.rhinestone.dev";
 
-export const DEV_RELAYER =
-  process.env.DEV_RELAYER ?? "0xdBfdBA7B3120c384589978aD75036e4FEBEB5280";
+export const ORCHESTRATOR_STAGING_URL =
+  process.env.ORCHESTRATOR_STAGING_URL ??
+  "https://staging.orchestrator.rhinestone.dev";
