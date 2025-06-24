@@ -3,6 +3,9 @@ import { http } from "viem";
 
 import { rsSpokePoolAbi } from "./abis/rsSpokePoolAbi";
 import { originAbi } from "./abis/originAbi";
+import { routerAbi } from "./abis/routerAbi";
+
+const ROUTER_ADDRESS = "0xB3FcB766Efa166492522e4861c9f84A147b09eaf";
 
 export default createConfig({
   ordering: "multichain",
@@ -108,6 +111,26 @@ export default createConfig({
         },
         arbitrumSepolia: {
           address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04",
+        },
+      },
+    },
+    router: {
+      abi: routerAbi,
+      startBlock: "latest",
+      network: {
+        mainnet: { address: ROUTER_ADDRESS },
+        base: { address: ROUTER_ADDRESS },
+        optimism: { address: ROUTER_ADDRESS },
+        arbitrum: { address: ROUTER_ADDRESS },
+        polygon: { address: ROUTER_ADDRESS },
+        zksync: { address: ROUTER_ADDRESS },
+        sepolia: { address: ROUTER_ADDRESS },
+        baseSepolia: { address: ROUTER_ADDRESS },
+        optimismSepolia: {
+          address: ROUTER_ADDRESS,
+        },
+        arbitrumSepolia: {
+          address: ROUTER_ADDRESS,
         },
       },
     },

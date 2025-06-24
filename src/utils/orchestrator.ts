@@ -2,6 +2,9 @@ import {
   ORCHESTRATOR_DEV_URL,
   ORCHESTRATOR_STAGING_URL,
   ORCHESTRATOR_URL,
+  ORCHESTRATOR_V1_DEV_URL,
+  ORCHESTRATOR_V1_STAGING_URL,
+  ORCHESTRATOR_V1_URL,
 } from "./constants";
 
 type Environment = {
@@ -29,6 +32,24 @@ export const getEnvironment = ({ nonce }: { nonce: bigint }): Environment => {
         name: "staging",
         url: ORCHESTRATOR_STAGING_URL,
         apiKey: process.env.ORCHESTRATOR_STAGING_API_KEY!,
+      };
+    case 4n:
+      return {
+        name: "prod",
+        url: ORCHESTRATOR_V1_URL,
+        apiKey: process.env.ORCHESTRATOR_V1_API_KEY!,
+      };
+    case 5n:
+      return {
+        name: "dev",
+        url: ORCHESTRATOR_V1_DEV_URL,
+        apiKey: process.env.ORCHESTRATOR_V1_DEV_API_KEY!,
+      };
+    case 6n:
+      return {
+        name: "staging",
+        url: ORCHESTRATOR_V1_STAGING_URL,
+        apiKey: process.env.ORCHESTRATOR_V1_STAGING_API_KEY!,
       };
     default:
       // default to prod
