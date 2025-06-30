@@ -114,25 +114,25 @@ export default createConfig({
         },
       },
     },
-    router: {
-      abi: routerAbi,
-      startBlock: "latest",
-      network: {
-        mainnet: { address: ROUTER_ADDRESS },
-        base: { address: ROUTER_ADDRESS },
-        optimism: { address: ROUTER_ADDRESS },
-        arbitrum: { address: ROUTER_ADDRESS },
-        polygon: { address: ROUTER_ADDRESS },
-        zksync: { address: ROUTER_ADDRESS },
-        sepolia: { address: ROUTER_ADDRESS },
-        baseSepolia: { address: ROUTER_ADDRESS },
-        optimismSepolia: {
-          address: ROUTER_ADDRESS,
-        },
-        arbitrumSepolia: {
-          address: ROUTER_ADDRESS,
-        },
-      },
-    },
+    // router: {
+    //   abi: routerAbi,
+    //   startBlock: "latest",
+    //   network: {
+    //     mainnet: { address: ROUTER_ADDRESS },
+    //     base: { address: ROUTER_ADDRESS },
+    //     optimism: { address: ROUTER_ADDRESS },
+    //     arbitrum: { address: ROUTER_ADDRESS },
+    //     polygon: { address: ROUTER_ADDRESS },
+    //     zksync: { address: ROUTER_ADDRESS },
+    //     sepolia: { address: ROUTER_ADDRESS },
+    //     baseSepolia: { address: ROUTER_ADDRESS },
+    //     optimismSepolia: {
+    //       address: ROUTER_ADDRESS,
+    //     },
+    //     arbitrumSepolia: {
+    //       address: ROUTER_ADDRESS,
+    //     },
+    //   },
+    // },
   },
 });
