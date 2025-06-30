@@ -68,7 +68,6 @@ export const sendToOrchestrator = async ({
   data: any;
   environment: Environment;
 }) => {
-  console.log(`sending to orchestrator: ${environment.name}`);
   await fetch(`${environment.url}/chain-events`, {
     method: "POST",
     headers: {

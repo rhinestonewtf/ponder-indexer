@@ -76,52 +76,52 @@ ponder.on("sameChainModule:Deposited", async ({ event, context }) => {
   }
 });
 
-// ponder.on("router:Claimed", async ({ event, context }) => {
-//   const data = {
-//     eventType: "Deposited",
-//     chainId: context.network.chainId,
-//     blockNumber: event.block.number.toString(),
-//     blockTimestamp: event.block.timestamp.toString(),
-//     params: {
-//       txHash: event.transaction.hash,
-//       depositId: event.args.nonce.toString(),
-//     },
-//   };
-//
-//   let environment = getEnvironment({
-//     nonce: event.args.nonce,
-//   });
-//   try {
-//     await sendToOrchestrator({
-//       data,
-//       environment,
-//     });
-//   } catch (error) {
-//     console.log("router claimed error: ", error);
-//   }
-// });
-//
-// ponder.on("router:Filled", async ({ event, context }) => {
-//   const data = {
-//     eventType: "Filled",
-//     chainId: context.network.chainId,
-//     blockNumber: event.block.number.toString(),
-//     blockTimestamp: event.block.timestamp.toString(),
-//     params: {
-//       txHash: event.transaction.hash,
-//       depositId: event.args.nonce.toString(),
-//     },
-//   };
-//
-//   let environment = getEnvironment({
-//     nonce: event.args.nonce,
-//   });
-//   try {
-//     await sendToOrchestrator({
-//       data,
-//       environment,
-//     });
-//   } catch (error) {
-//     console.log("router claimed error: ", error);
-//   }
-// });
+ponder.on("router:Claimed", async ({ event, context }) => {
+  const data = {
+    eventType: "Deposited",
+    chainId: context.network.chainId,
+    blockNumber: event.block.number.toString(),
+    blockTimestamp: event.block.timestamp.toString(),
+    params: {
+      txHash: event.transaction.hash,
+      depositId: event.args.nonce.toString(),
+    },
+  };
+
+  let environment = getEnvironment({
+    nonce: event.args.nonce,
+  });
+  try {
+    await sendToOrchestrator({
+      data,
+      environment,
+    });
+  } catch (error) {
+    console.log("router claimed error: ", error);
+  }
+});
+
+ponder.on("router:Filled", async ({ event, context }) => {
+  const data = {
+    eventType: "Filled",
+    chainId: context.network.chainId,
+    blockNumber: event.block.number.toString(),
+    blockTimestamp: event.block.timestamp.toString(),
+    params: {
+      txHash: event.transaction.hash,
+      depositId: event.args.nonce.toString(),
+    },
+  };
+
+  let environment = getEnvironment({
+    nonce: event.args.nonce,
+  });
+  try {
+    await sendToOrchestrator({
+      data,
+      environment,
+    });
+  } catch (error) {
+    console.log("router claimed error: ", error);
+  }
+});
