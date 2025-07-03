@@ -109,7 +109,7 @@ ponder.on("router:Filled", async ({ event, context }) => {
     blockTimestamp: event.block.timestamp.toString(),
     params: {
       txHash: event.transaction.hash,
-      depositId: event.args.nonce.toString(),
+      nonce: event.args.nonce.toString(),
     },
   };
 
