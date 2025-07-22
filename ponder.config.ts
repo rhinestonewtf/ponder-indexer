@@ -5,7 +5,7 @@ import { rsSpokePoolAbi } from "./abis/rsSpokePoolAbi";
 import { originAbi } from "./abis/originAbi";
 import { routerAbi } from "./abis/routerAbi";
 
-const ROUTER_ADDRESS = "0xB3FcB766Efa166492522e4861c9f84A147b09eaf";
+const ROUTER_ADDRESS = "0x000000000004598D17aaD017bF0734a364c5588b";
 
 export default createConfig({
   ordering: "multichain",

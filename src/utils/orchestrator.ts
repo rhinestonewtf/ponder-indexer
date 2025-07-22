@@ -35,19 +35,19 @@ export const getEnvironment = ({ nonce }: { nonce: bigint }): Environment => {
       };
     case 4n:
       return {
-        name: "prod",
+        name: "prod-v1",
         url: ORCHESTRATOR_V1_URL,
         apiKey: process.env.ORCHESTRATOR_V1_API_KEY!,
       };
     case 5n:
       return {
-        name: "dev",
+        name: "dev-v1",
         url: ORCHESTRATOR_V1_DEV_URL,
         apiKey: process.env.ORCHESTRATOR_V1_DEV_API_KEY!,
       };
     case 6n:
       return {
-        name: "staging",
+        name: "staging-v1",
         url: ORCHESTRATOR_V1_STAGING_URL,
         apiKey: process.env.ORCHESTRATOR_V1_STAGING_API_KEY!,
       };
