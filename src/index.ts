@@ -82,6 +82,7 @@ ponder.on("router:Claimed", async ({ event, context }) => {
     chainId: context.network.chainId,
     blockNumber: event.block.number.toString(),
     blockTimestamp: event.block.timestamp.toString(),
+    from: event.transaction.from,
     params: {
       txHash: event.transaction.hash,
       depositId: event.args.nonce.toString(),
@@ -107,6 +108,7 @@ ponder.on("router:Filled", async ({ event, context }) => {
     chainId: context.network.chainId,
     blockNumber: event.block.number.toString(),
     blockTimestamp: event.block.timestamp.toString(),
+    from: event.transaction.from,
     params: {
       txHash: event.transaction.hash,
       nonce: event.args.nonce.toString(),
