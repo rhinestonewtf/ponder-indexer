@@ -9,55 +9,70 @@ const ROUTER_ADDRESS = "0x000000000004598D17aaD017bF0734a364c5588b";
 
 export default createConfig({
   ordering: "multichain",
-  networks: {
+  chains: {
     // Mainnets
     mainnet: {
-      chainId: 1,
-      transport: http(process.env.PONDER_RPC_URL_1),
+      id: 1,
+      rpc: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     base: {
-      chainId: 8453,
-      transport: http(process.env.PONDER_RPC_URL_8453),
+      id: 8453,
+      rpc: `https://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     optimism: {
-      chainId: 10,
-      transport: http(process.env.PONDER_RPC_URL_10),
+      id: 10,
+      rpc: `https://opt-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://opt-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     arbitrum: {
-      chainId: 42161,
-      transport: http(process.env.PONDER_RPC_URL_42161),
+      id: 42161,
+      rpc: `https://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     polygon: {
-      chainId: 137,
-      transport: http(process.env.PONDER_RPC_URL_137),
+      id: 137,
+      rpc: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     zksync: {
-      chainId: 324,
-      transport: http(process.env.PONDER_RPC_URL_324),
+      id: 324,
+      rpc: `https://zksync-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://zksync-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+    },
+    soneium: {
+      id: 1868,
+      rpc: `https://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     // Testnets
     sepolia: {
-      chainId: 11155111,
-      transport: http(process.env.PONDER_RPC_URL_11155111),
+      id: 11155111,
+      rpc: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     baseSepolia: {
-      chainId: 84532,
-      transport: http(process.env.PONDER_RPC_URL_84532),
+      id: 84532,
+      rpc: `https://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     optimismSepolia: {
-      chainId: 11155420,
-      transport: http(process.env.PONDER_RPC_URL_11155420),
+      id: 11155420,
+      rpc: `https://opt-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://opt-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     arbitrumSepolia: {
-      chainId: 421614,
-      transport: http(process.env.PONDER_RPC_URL_421614),
+      id: 421614,
+      rpc: `https://arb-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://arb-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
   },
   contracts: {
     rsSpokePool: {
       abi: rsSpokePoolAbi,
       startBlock: "latest",
-      network: {
+      chain: {
         mainnet: { address: "0x000000000060f6e853447881951574CDd0663530" },
         base: { address: "0x000000000060f6e853447881951574CDd0663530" },
         optimism: { address: "0x000000000060f6e853447881951574CDd0663530" },
@@ -77,7 +92,7 @@ export default createConfig({
     originModule: {
       abi: originAbi,
       startBlock: "latest",
-      network: {
+      chain: {
         mainnet: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
         base: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
         optimism: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
@@ -97,7 +112,7 @@ export default createConfig({
     sameChainModule: {
       abi: originAbi,
       startBlock: "latest",
-      network: {
+      chain: {
         mainnet: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
         base: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
         optimism: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
@@ -117,7 +132,7 @@ export default createConfig({
     router: {
       abi: routerAbi,
       startBlock: "latest",
-      network: {
+      chain: {
         mainnet: { address: ROUTER_ADDRESS },
         base: { address: ROUTER_ADDRESS },
         optimism: { address: ROUTER_ADDRESS },

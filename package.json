@@ -14,17 +14,18 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "hono": "^4.7.9",
-    "ponder": "^0.10.26",
+    "ponder": "^0.11.26",
     "viem": "^2.29.2"
   },
   "devDependencies": {
     "@types/node": "^20.17.46",
     "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^8.57.1",
-    "eslint-config-ponder": "^0.10.26",
+    "eslint-config-ponder": "^0.11.26",
     "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18.14"
   }
 }
+
