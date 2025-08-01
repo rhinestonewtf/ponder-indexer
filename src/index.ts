@@ -1,5 +1,6 @@
 import { ponder } from "ponder:registry";
 import { getEnvironment, sendToOrchestrator } from "./utils/orchestrator";
+import { notify } from "./utils/notifier";
 
 ponder.on("rsSpokePool:Filled", async ({ event, context }) => {
   const data = {
@@ -124,4 +125,22 @@ ponder.on("router:Filled", async ({ event, context }) => {
   } catch (error) {
     console.log("router claimed error: ", error);
   }
+});
+
+ponder.on("router:FillRouteAdded", async ({ event, context }) => {
+  await notify({
+    message: `FillRouteAdded: ${event.args.selector} on chain ${context.chain.id} with route ${event.args.router}`,
+  });
+});
+
+ponder.on("router:ClaimRouteAdded", async ({ event, context }) => {
+  await notify({
+    message: `ClaimRouteAdded: ${event.args.selector} on chain ${context.chain.id} with route ${event.args.router}`,
+  });
+});
+
+ponder.on("proxies:Upgraded", async ({ event, context }) => {
+  await notify({
+    message: `Proxy ${event.log.address} upgraded on chain ${context.chain.id} to ${event.args.implementation}`,
+  });
 });

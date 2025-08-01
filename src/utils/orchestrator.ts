@@ -68,7 +68,9 @@ export const sendToOrchestrator = async ({
   data: any;
   environment: Environment;
 }) => {
-  await fetch(`${environment.url}/chain-events`, {
+  console.log(environment);
+  console.dir(data, { depth: null });
+  const res = await fetch(`${environment.url}/chain-events`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -76,4 +78,5 @@ export const sendToOrchestrator = async ({
     },
     body: JSON.stringify(data),
   });
+  console.log(await res.json());
 };
