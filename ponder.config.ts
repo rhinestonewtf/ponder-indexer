@@ -4,141 +4,143 @@ import { http } from "viem";
 import { rsSpokePoolAbi } from "./abis/rsSpokePoolAbi";
 import { originAbi } from "./abis/originAbi";
 import { routerAbi } from "./abis/routerAbi";
+import { securityAbi } from "./abis/securityAbi";
+import {
+  RS_SPOKE_POOL_ADDRESS,
+  ORIGIN_MODULE_ADDRESS,
+  SAME_CHAIN_MODULE_ADDRESS,
+  ROUTER_ADDRESS,
+  EMISSARY_ADDRESS,
+  INTENT_EXECUTOR_ADDRESS,
+  SAMECHAIN_ARBITER_ADDRESS,
+  ACROSS_MULTICALL_ARBITER_ADDRESS,
+  ACROSS_7579_ARBITER_ADDRESS,
+  ECO_ARBITER_ADDRESS,
+} from "./src/utils/constants";
 
-const ROUTER_ADDRESS = "0x000000000004598D17aaD017bF0734a364c5588b";
 
 export default createConfig({
   ordering: "multichain",
-  chains: {
+  networks: {
     // Mainnets
     mainnet: {
-      id: 1,
-      rpc: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 1,
+      transport: http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     base: {
-      id: 8453,
-      rpc: `https://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 8453,
+      transport: http(`https://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     optimism: {
-      id: 10,
-      rpc: `https://opt-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://opt-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 10,
+      transport: http(`https://opt-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     arbitrum: {
-      id: 42161,
-      rpc: `https://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 42161,
+      transport: http(`https://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     polygon: {
-      id: 137,
-      rpc: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 137,
+      transport: http(`https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     zksync: {
-      id: 324,
-      rpc: `https://zksync-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://zksync-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 324,
+      transport: http(`https://zksync-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     soneium: {
-      id: 1868,
-      rpc: `https://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 1868,
+      transport: http(`https://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     // Testnets
     sepolia: {
-      id: 11155111,
-      rpc: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 11155111,
+      transport: http(`https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     baseSepolia: {
-      id: 84532,
-      rpc: `https://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 84532,
+      transport: http(`https://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     optimismSepolia: {
-      id: 11155420,
-      rpc: `https://opt-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://opt-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 11155420,
+      transport: http(`https://opt-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     arbitrumSepolia: {
-      id: 421614,
-      rpc: `https://arb-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      ws: `wss://arb-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      chainId: 421614,
+      transport: http(`https://arb-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
   },
   contracts: {
     rsSpokePool: {
       abi: rsSpokePoolAbi,
       startBlock: "latest",
-      chain: {
-        mainnet: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        base: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        optimism: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        arbitrum: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        polygon: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        zksync: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        sepolia: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        baseSepolia: { address: "0x000000000060f6e853447881951574CDd0663530" },
+      network: {
+        mainnet: { address: RS_SPOKE_POOL_ADDRESS },
+        base: { address: RS_SPOKE_POOL_ADDRESS },
+        optimism: { address: RS_SPOKE_POOL_ADDRESS },
+        arbitrum: { address: RS_SPOKE_POOL_ADDRESS },
+        polygon: { address: RS_SPOKE_POOL_ADDRESS },
+        zksync: { address: RS_SPOKE_POOL_ADDRESS },
+        sepolia: { address: RS_SPOKE_POOL_ADDRESS },
+        baseSepolia: { address: RS_SPOKE_POOL_ADDRESS },
         optimismSepolia: {
-          address: "0x000000000060f6e853447881951574CDd0663530",
+          address: RS_SPOKE_POOL_ADDRESS,
         },
         arbitrumSepolia: {
-          address: "0x000000000060f6e853447881951574CDd0663530",
+          address: RS_SPOKE_POOL_ADDRESS,
         },
       },
     },
     originModule: {
       abi: originAbi,
       startBlock: "latest",
-      chain: {
-        mainnet: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        base: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        optimism: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        arbitrum: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        polygon: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        zksync: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        sepolia: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        baseSepolia: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
+      network: {
+        mainnet: { address: ORIGIN_MODULE_ADDRESS },
+        base: { address: ORIGIN_MODULE_ADDRESS },
+        optimism: { address: ORIGIN_MODULE_ADDRESS },
+        arbitrum: { address: ORIGIN_MODULE_ADDRESS },
+        polygon: { address: ORIGIN_MODULE_ADDRESS },
+        zksync: { address: ORIGIN_MODULE_ADDRESS },
+        sepolia: { address: ORIGIN_MODULE_ADDRESS },
+        baseSepolia: { address: ORIGIN_MODULE_ADDRESS },
         optimismSepolia: {
-          address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8",
+          address: ORIGIN_MODULE_ADDRESS,
         },
         arbitrumSepolia: {
-          address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8",
+          address: ORIGIN_MODULE_ADDRESS,
         },
       },
     },
     sameChainModule: {
       abi: originAbi,
       startBlock: "latest",
-      chain: {
-        mainnet: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        base: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        optimism: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        arbitrum: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        polygon: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        zksync: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        sepolia: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        baseSepolia: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
+      network: {
+        mainnet: { address: SAME_CHAIN_MODULE_ADDRESS },
+        base: { address: SAME_CHAIN_MODULE_ADDRESS },
+        optimism: { address: SAME_CHAIN_MODULE_ADDRESS },
+        arbitrum: { address: SAME_CHAIN_MODULE_ADDRESS },
+        polygon: { address: SAME_CHAIN_MODULE_ADDRESS },
+        zksync: { address: SAME_CHAIN_MODULE_ADDRESS },
+        sepolia: { address: SAME_CHAIN_MODULE_ADDRESS },
+        baseSepolia: { address: SAME_CHAIN_MODULE_ADDRESS },
         optimismSepolia: {
-          address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04",
+          address: SAME_CHAIN_MODULE_ADDRESS,
         },
         arbitrumSepolia: {
-          address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04",
+          address: SAME_CHAIN_MODULE_ADDRESS,
         },
       },
     },
     router: {
       abi: routerAbi,
       startBlock: "latest",
-      chain: {
+      network: {
         mainnet: { address: ROUTER_ADDRESS },
         base: { address: ROUTER_ADDRESS },
         optimism: { address: ROUTER_ADDRESS },
         arbitrum: { address: ROUTER_ADDRESS },
         polygon: { address: ROUTER_ADDRESS },
         zksync: { address: ROUTER_ADDRESS },
+        soneium: { address: ROUTER_ADDRESS },
         sepolia: { address: ROUTER_ADDRESS },
         baseSepolia: { address: ROUTER_ADDRESS },
         optimismSepolia: {
@@ -146,6 +148,133 @@ export default createConfig({
         },
         arbitrumSepolia: {
           address: ROUTER_ADDRESS,
+        },
+      },
+    },
+    proxies: {
+      abi: securityAbi,
+      startBlock: "latest",
+      network: {
+        mainnet: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        base: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        optimism: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        arbitrum: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        polygon: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        zksync: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        soneium: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        sepolia: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        baseSepolia: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        optimismSepolia: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        arbitrumSepolia: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
         },
       },
     },
