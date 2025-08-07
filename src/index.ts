@@ -1,5 +1,18 @@
 import { ponder } from "ponder:registry";
 import { getEnvironment, sendToOrchestrator } from "./utils/orchestrator";
+import {
+  createSecurityContext,
+  handleFillRouteAdded,
+  handleClaimRouteAdded,
+  handleProxyUpgrade,
+  handleRelayerSet,
+  handleRelayerWithdrawal,
+  handleTokenApproval,
+} from "./utils/security";
+import { 
+  handleBusinessEvent,
+  handleSecurityEvent
+} from "./utils/eventHandlers";
 
 ponder.on("rsSpokePool:Filled", async ({ event, context }) => {
   const data = {
@@ -125,3 +138,4 @@ ponder.on("router:Filled", async ({ event, context }) => {
     console.log("router claimed error: ", error);
   }
 });
+
