@@ -1,5 +1,5 @@
 import { createConfig } from "ponder";
-import { http, webSocket, fallback } from "viem";
+import { http } from "viem";
 
 import { rsSpokePoolAbi } from "./abis/rsSpokePoolAbi";
 import { originAbi } from "./abis/originAbi";
@@ -25,81 +25,48 @@ export default createConfig({
     // Mainnets
     mainnet: {
       chainId: 1,
-      transport: fallback([
-        webSocket(`wss://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     base: {
       chainId: 8453,
-      transport: fallback([
-        webSocket(`wss://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://base-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     optimism: {
       chainId: 10,
-      transport: fallback([
-        webSocket(`wss://opt-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://opt-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://opt-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     arbitrum: {
       chainId: 42161,
-      transport: fallback([
-        webSocket(`wss://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://arb-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     polygon: {
       chainId: 137,
-      transport: fallback([
-        webSocket(`wss://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     zksync: {
       chainId: 324,
-      transport: fallback([
-        webSocket(`wss://zksync-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://zksync-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://zksync-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     soneium: {
       chainId: 1868,
-      transport: fallback([
-        webSocket(`wss://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     // Testnets
     sepolia: {
       chainId: 11155111,
-      transport: fallback([
-        webSocket(`wss://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     baseSepolia: {
       chainId: 84532,
-      transport: fallback([
-        webSocket(`wss://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://base-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     optimismSepolia: {
       chainId: 11155420,
-      transport: fallback([
-        webSocket(`wss://opt-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://opt-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://opt-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
     arbitrumSepolia: {
       chainId: 421614,
-      transport: fallback([
-        webSocket(`wss://arb-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
-        http(`https://arb-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`)
-      ]),
+      transport: http(`https://arb-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`),
     },
   },
   contracts: {
