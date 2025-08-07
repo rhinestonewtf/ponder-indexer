@@ -1,14 +1,5 @@
 import { ponder } from "ponder:registry";
 import { getEnvironment, sendToOrchestrator } from "./utils/orchestrator";
-import {
-  createSecurityContext,
-  handleFillRouteAdded,
-  handleClaimRouteAdded,
-  handleProxyUpgrade,
-  handleRelayerSet,
-  handleRelayerWithdrawal,
-  handleTokenApproval,
-} from "./utils/security";
 import { 
   handleBusinessEvent,
   handleSecurityEvent
@@ -137,5 +128,20 @@ ponder.on("router:Filled", async ({ event, context }) => {
   } catch (error) {
     console.log("router claimed error: ", error);
   }
+});
+
+ponder.on("proxies:FillRouteAdded", async ({ event, context }) => {
+  const contractAddress = event.log.address.toLowerCase();
+  await handleSecurityEvent("FillRouteAdded", event, context, contractAddress);
+});
+
+ponder.on("proxies:ClaimRouteAdded", async ({ event, context }) => {
+  const contractAddress = event.log.address.toLowerCase();
+  await handleSecurityEvent("ClaimRouteAdded", event, context, contractAddress);
+});
+
+ponder.on("proxies:Upgraded", async ({ event, context }) => {
+  const contractAddress = event.log.address.toLowerCase();
+  await handleSecurityEvent("Upgraded", event, context, contractAddress);
 });
 
