@@ -1,5 +1,9 @@
 import { ponder } from "ponder:registry";
 import { getEnvironment, sendToOrchestrator } from "./utils/orchestrator";
+import { 
+  handleBusinessEvent,
+  handleSecurityEvent
+} from "./utils/eventHandlers";
 
 ponder.on("rsSpokePool:Filled", async ({ event, context }) => {
   const data = {
@@ -125,3 +129,19 @@ ponder.on("router:Filled", async ({ event, context }) => {
     console.log("router claimed error: ", error);
   }
 });
+
+ponder.on("proxies:FillRouteAdded", async ({ event, context }) => {
+  const contractAddress = event.log.address.toLowerCase();
+  await handleSecurityEvent("FillRouteAdded", event, context, contractAddress);
+});
+
+ponder.on("proxies:ClaimRouteAdded", async ({ event, context }) => {
+  const contractAddress = event.log.address.toLowerCase();
+  await handleSecurityEvent("ClaimRouteAdded", event, context, contractAddress);
+});
+
+ponder.on("proxies:Upgraded", async ({ event, context }) => {
+  const contractAddress = event.log.address.toLowerCase();
+  await handleSecurityEvent("Upgraded", event, context, contractAddress);
+});
+

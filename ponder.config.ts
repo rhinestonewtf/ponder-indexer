@@ -1,11 +1,19 @@
 import { createConfig } from "ponder";
-import { http } from "viem";
 
 import { rsSpokePoolAbi } from "./abis/rsSpokePoolAbi";
-import { originAbi } from "./abis/originAbi";
-import { routerAbi } from "./abis/routerAbi";
 
-const ROUTER_ADDRESS = "0x000000000004598D17aaD017bF0734a364c5588b";
+import {
+  RS_SPOKE_POOL_ADDRESS,
+  ROUTER_ADDRESS,
+  EMISSARY_ADDRESS,
+  INTENT_EXECUTOR_ADDRESS,
+  SAMECHAIN_ARBITER_ADDRESS,
+  ACROSS_MULTICALL_ARBITER_ADDRESS,
+  ACROSS_7579_ARBITER_ADDRESS,
+  ECO_ARBITER_ADDRESS,
+} from "./src/utils/constants";
+
+import { relayerAbi } from "./abis/relayerAbi";
 
 export default createConfig({
   ordering: "multichain",
@@ -73,79 +81,146 @@ export default createConfig({
       abi: rsSpokePoolAbi,
       startBlock: "latest",
       chain: {
-        mainnet: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        base: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        optimism: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        arbitrum: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        polygon: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        zksync: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        sepolia: { address: "0x000000000060f6e853447881951574CDd0663530" },
-        baseSepolia: { address: "0x000000000060f6e853447881951574CDd0663530" },
+        mainnet: { address: RS_SPOKE_POOL_ADDRESS },
+        base: { address: RS_SPOKE_POOL_ADDRESS },
+        optimism: { address: RS_SPOKE_POOL_ADDRESS },
+        arbitrum: { address: RS_SPOKE_POOL_ADDRESS },
+        polygon: { address: RS_SPOKE_POOL_ADDRESS },
+        zksync: { address: RS_SPOKE_POOL_ADDRESS },
+        sepolia: { address: RS_SPOKE_POOL_ADDRESS },
+        baseSepolia: { address: RS_SPOKE_POOL_ADDRESS },
         optimismSepolia: {
-          address: "0x000000000060f6e853447881951574CDd0663530",
+          address: RS_SPOKE_POOL_ADDRESS,
         },
         arbitrumSepolia: {
-          address: "0x000000000060f6e853447881951574CDd0663530",
+          address: RS_SPOKE_POOL_ADDRESS,
         },
       },
     },
-    originModule: {
-      abi: originAbi,
+    proxies: {
+      abi: relayerAbi,
       startBlock: "latest",
-      chain: {
-        mainnet: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        base: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        optimism: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        arbitrum: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        polygon: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        zksync: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        sepolia: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
-        baseSepolia: { address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8" },
+      network: {
+        mainnet: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        base: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        optimism: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        arbitrum: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        polygon: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        zksync: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        soneium: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        sepolia: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        baseSepolia: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
         optimismSepolia: {
-          address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8",
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
         },
         arbitrumSepolia: {
-          address: "0x0000000000AFc904aE9860D9c4B96D7c529c58b8",
-        },
-      },
-    },
-    sameChainModule: {
-      abi: originAbi,
-      startBlock: "latest",
-      chain: {
-        mainnet: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        base: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        optimism: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        arbitrum: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        polygon: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        zksync: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        sepolia: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        baseSepolia: { address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04" },
-        optimismSepolia: {
-          address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04",
-        },
-        arbitrumSepolia: {
-          address: "0x000000000043ff16d5776c7F0f65Ec485C17Ca04",
-        },
-      },
-    },
-    router: {
-      abi: routerAbi,
-      startBlock: "latest",
-      chain: {
-        mainnet: { address: ROUTER_ADDRESS },
-        base: { address: ROUTER_ADDRESS },
-        optimism: { address: ROUTER_ADDRESS },
-        arbitrum: { address: ROUTER_ADDRESS },
-        polygon: { address: ROUTER_ADDRESS },
-        zksync: { address: ROUTER_ADDRESS },
-        sepolia: { address: ROUTER_ADDRESS },
-        baseSepolia: { address: ROUTER_ADDRESS },
-        optimismSepolia: {
-          address: ROUTER_ADDRESS,
-        },
-        arbitrumSepolia: {
-          address: ROUTER_ADDRESS,
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
         },
       },
     },
