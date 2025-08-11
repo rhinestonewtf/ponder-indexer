@@ -2,7 +2,7 @@ import { createConfig } from "ponder";
 
 import { rsSpokePoolAbi } from "./abis/rsSpokePoolAbi";
 import { originAbi } from "./abis/originAbi";
-import { proxyAbi } from "./abis/proxyAbi"; 
+import { proxyAbi } from "./abis/proxyAbi";
 import { relayerAbi } from "./abis/relayerAbi";
 import { routerAbi } from "./abis/routerAbi";
 
@@ -17,7 +17,10 @@ import {
   ACROSS_MULTICALL_ARBITER_ADDRESS,
   ACROSS_7579_ARBITER_ADDRESS,
   ECO_ARBITER_ADDRESS,
-  RELAYER_ADDRESS,
+  RELAYER_POT_PROD_V1,
+  RELAYER_POT_DEV_V1,
+  RELAYER_POT_PROD_V0,
+  ROUTER_ADDRESS_DEV,
 } from "./src/utils/constants";
 
 export default createConfig({
@@ -58,6 +61,11 @@ export default createConfig({
       id: 1868,
       rpc: `https://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
       ws: `wss://soneium-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+    },
+    sonic: {
+      id: 146,
+      rpc: `https://sonic-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+      ws: `wss://sonic-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
     },
     // Testnets
     sepolia: {
@@ -146,41 +154,83 @@ export default createConfig({
       abi: routerAbi,
       startBlock: "latest",
       chain: {
-        mainnet: { address: ROUTER_ADDRESS },
-        base: { address: ROUTER_ADDRESS },
-        optimism: { address: ROUTER_ADDRESS },
-        arbitrum: { address: ROUTER_ADDRESS },
-        polygon: { address: ROUTER_ADDRESS },
-        zksync: { address: ROUTER_ADDRESS },
-        soneium: { address: ROUTER_ADDRESS },
-        sepolia: { address: ROUTER_ADDRESS },
-        baseSepolia: { address: ROUTER_ADDRESS },
+        mainnet: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        base: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        optimism: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        arbitrum: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        polygon: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        zksync: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        soneium: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        sonic: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        sepolia: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
+        baseSepolia: { address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV] },
         optimismSepolia: {
-          address: ROUTER_ADDRESS,
+          address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV],
         },
         arbitrumSepolia: {
-          address: ROUTER_ADDRESS,
+          address: [ROUTER_ADDRESS, ROUTER_ADDRESS_DEV],
         },
-      }
+      },
     },
     relayer: {
       abi: relayerAbi,
       startBlock: "latest",
       chain: {
-        mainnet: { address: RELAYER_ADDRESS },
-        base: { address: RELAYER_ADDRESS },
-        optimism: { address: RELAYER_ADDRESS },
-        arbitrum: { address: RELAYER_ADDRESS },
-        polygon: { address: RELAYER_ADDRESS },
-        zksync: { address: RELAYER_ADDRESS },
-        soneium: { address: RELAYER_ADDRESS },
-        sepolia: { address: RELAYER_ADDRESS },
-        baseSepolia: { address: RELAYER_ADDRESS },
-        optimismSepolia: {
-          address: RELAYER_ADDRESS,
+        mainnet: {
+          address: [
+            RELAYER_POT_PROD_V1,
+            RELAYER_POT_DEV_V1,
+            RELAYER_POT_PROD_V0,
+          ],
         },
-        arbitrumSepolia: {
-          address: RELAYER_ADDRESS,
+        base: {
+          address: [
+            RELAYER_POT_PROD_V1,
+            RELAYER_POT_DEV_V1,
+            RELAYER_POT_PROD_V0,
+          ],
+        },
+        optimism: {
+          address: [
+            RELAYER_POT_PROD_V1,
+            RELAYER_POT_DEV_V1,
+            RELAYER_POT_PROD_V0,
+          ],
+        },
+        arbitrum: {
+          address: [
+            RELAYER_POT_PROD_V1,
+            RELAYER_POT_DEV_V1,
+            RELAYER_POT_PROD_V0,
+          ],
+        },
+        polygon: {
+          address: [
+            RELAYER_POT_PROD_V1,
+            RELAYER_POT_DEV_V1,
+            RELAYER_POT_PROD_V0,
+          ],
+        },
+        zksync: {
+          address: [
+            RELAYER_POT_PROD_V1,
+            RELAYER_POT_DEV_V1,
+            RELAYER_POT_PROD_V0,
+          ],
+        },
+        soneium: {
+          address: [
+            RELAYER_POT_PROD_V1,
+            RELAYER_POT_DEV_V1,
+            RELAYER_POT_PROD_V0,
+          ],
+        },
+        sonic: {
+          address: [
+            RELAYER_POT_PROD_V1,
+            RELAYER_POT_DEV_V1,
+            RELAYER_POT_PROD_V0,
+          ],
         },
       },
     },
@@ -255,6 +305,17 @@ export default createConfig({
           ],
         },
         soneium: {
+          address: [
+            ROUTER_ADDRESS,
+            EMISSARY_ADDRESS,
+            INTENT_EXECUTOR_ADDRESS,
+            SAMECHAIN_ARBITER_ADDRESS,
+            ACROSS_MULTICALL_ARBITER_ADDRESS,
+            ACROSS_7579_ARBITER_ADDRESS,
+            ECO_ARBITER_ADDRESS,
+          ],
+        },
+        sonic: {
           address: [
             ROUTER_ADDRESS,
             EMISSARY_ADDRESS,

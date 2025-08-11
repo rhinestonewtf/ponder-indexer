@@ -4,7 +4,7 @@ export const relayerAbi = [
     anonymous: false,
     inputs: [
       { name: "relayer", type: "address", indexed: true },
-      { name: "isTrusted", type: "bool", indexed: false }
+      { name: "isTrusted", type: "bool", indexed: false },
     ],
     name: "RelayerSet",
   },
@@ -13,17 +13,9 @@ export const relayerAbi = [
     anonymous: false,
     inputs: [
       { name: "token", type: "address", indexed: true },
-      { name: "amount", type: "uint256", indexed: false }
+      { name: "amount", type: "uint256", indexed: false },
     ],
     name: "Withdrawn",
   },
-  {
-    type: "event",
-    anonymous: false,
-    inputs: [
-      { name: "token", type: "address", indexed: true },
-      { name: "amount", type: "uint256", indexed: false }
-    ],
-    name: "Approved",
-  },
 ] as const;
+
