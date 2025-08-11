@@ -58,7 +58,7 @@ export const handleBusinessEvent = async (
 /**
  * Generic handler for security events
  */
-export const handleSecurityEvent = async (
+export const handleRelayerSecurityEvent = async (
   eventType: string, 
   event: any, 
   context: any, 
@@ -78,6 +78,24 @@ export const handleSecurityEvent = async (
       break;
     case "Approved":
       await handleTokenApproval(securityContext, event.args.token, event.args.amount);
+      break;
+    default:
+      console.warn(`Unknown security event type: ${eventType}`);
+  }
+};
+
+
+export const handleRouterSecurityEvent = async (
+  eventType: string, 
+  event: any, 
+  context: any, 
+  contractAddress: string
+) => {
+  const securityContext = createSecurityContext(event, context, contractAddress);
+  
+  switch (eventType) {
+    case "Upgraded":
+      await handleProxyUpgrade(securityContext, event.args.implementation);
       break;
     case "FillRouteAdded":
       await handleFillRouteAdded(securityContext, event.args.selector);

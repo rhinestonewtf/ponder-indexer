@@ -1,3 +1,6 @@
+export const ORIGIN_MODULE_ADDRESS = "0x0000000000AFc904aE9860D9c4B96D7c529c58b8";
+export const SAME_CHAIN_MODULE_ADDRESS = "0x000000000043ff16d5776c7F0f65Ec485C17Ca04";
+
 export const ROUTER_ADDRESS = "0x000000000004598D17aaD017bF0734a364c5588b";
 export const EMISSARY_ADDRESS = "0x00000000000191E0ffEca3835B693Aa1DDeE8d40";
 export const INTENT_EXECUTOR_ADDRESS =
@@ -34,27 +37,6 @@ export const ORCHESTRATOR_V1_DEV_URL =
 export const ORCHESTRATOR_V1_STAGING_URL =
   process.env.ORCHESTRATOR_V1_STAGING_URL ??
   "https://staging.v1.orchestrator.rhinestone.dev";
-
-
-// Contract configurations for event handlers
-export const CONTRACT_CONFIGS = [
-  {
-    name: "rsSpokePool",
-    address: RS_SPOKE_POOL_ADDRESS,
-    events: {
-      business: ["Filled"],
-      security: ["Upgraded"]
-    }
-  },
-  {
-    name: "router",
-    address: ROUTER_ADDRESS,
-    events: {
-      business: ["Claimed", "Filled"],
-      security: ["Upgraded", "FillRouteAdded", "ClaimRouteAdded", "RelayerSet", "Withdrawn", "Approved"]
-    }
-  }
-] as const;
 
 export const SECURITY_EVENT_HANDLERS = {
   Upgraded: "handleProxyUpgrade",

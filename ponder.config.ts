@@ -1,8 +1,14 @@
 import { createConfig } from "ponder";
 
 import { rsSpokePoolAbi } from "./abis/rsSpokePoolAbi";
+import { originAbi } from "./abis/originAbi";
+import { proxyAbi } from "./abis/proxyAbi"; 
+import { relayerAbi } from "./abis/relayerAbi";
+import { routerAbi } from "./abis/routerAbi";
 
 import {
+  ORIGIN_MODULE_ADDRESS,
+  SAME_CHAIN_MODULE_ADDRESS,
   RS_SPOKE_POOL_ADDRESS,
   ROUTER_ADDRESS,
   EMISSARY_ADDRESS,
@@ -11,9 +17,8 @@ import {
   ACROSS_MULTICALL_ARBITER_ADDRESS,
   ACROSS_7579_ARBITER_ADDRESS,
   ECO_ARBITER_ADDRESS,
+  RELAYER_ADDRESS,
 } from "./src/utils/constants";
-
-import { relayerAbi } from "./abis/relayerAbi";
 
 export default createConfig({
   ordering: "multichain",
@@ -97,10 +102,92 @@ export default createConfig({
         },
       },
     },
-    proxies: {
+    originModule: {
+      abi: originAbi,
+      startBlock: "latest",
+      chain: {
+        mainnet: { address: ORIGIN_MODULE_ADDRESS },
+        base: { address: ORIGIN_MODULE_ADDRESS },
+        optimism: { address: ORIGIN_MODULE_ADDRESS },
+        arbitrum: { address: ORIGIN_MODULE_ADDRESS },
+        polygon: { address: ORIGIN_MODULE_ADDRESS },
+        zksync: { address: ORIGIN_MODULE_ADDRESS },
+        sepolia: { address: ORIGIN_MODULE_ADDRESS },
+        baseSepolia: { address: ORIGIN_MODULE_ADDRESS },
+        optimismSepolia: {
+          address: ORIGIN_MODULE_ADDRESS,
+        },
+        arbitrumSepolia: {
+          address: ORIGIN_MODULE_ADDRESS,
+        },
+      },
+    },
+    sameChainModule: {
+      abi: originAbi,
+      startBlock: "latest",
+      chain: {
+        mainnet: { address: SAME_CHAIN_MODULE_ADDRESS },
+        base: { address: SAME_CHAIN_MODULE_ADDRESS },
+        optimism: { address: SAME_CHAIN_MODULE_ADDRESS },
+        arbitrum: { address: SAME_CHAIN_MODULE_ADDRESS },
+        polygon: { address: SAME_CHAIN_MODULE_ADDRESS },
+        zksync: { address: SAME_CHAIN_MODULE_ADDRESS },
+        sepolia: { address: SAME_CHAIN_MODULE_ADDRESS },
+        baseSepolia: { address: SAME_CHAIN_MODULE_ADDRESS },
+        optimismSepolia: {
+          address: SAME_CHAIN_MODULE_ADDRESS,
+        },
+        arbitrumSepolia: {
+          address: SAME_CHAIN_MODULE_ADDRESS,
+        },
+      },
+    },
+    router: {
+      abi: routerAbi,
+      startBlock: "latest",
+      chain: {
+        mainnet: { address: ROUTER_ADDRESS },
+        base: { address: ROUTER_ADDRESS },
+        optimism: { address: ROUTER_ADDRESS },
+        arbitrum: { address: ROUTER_ADDRESS },
+        polygon: { address: ROUTER_ADDRESS },
+        zksync: { address: ROUTER_ADDRESS },
+        soneium: { address: ROUTER_ADDRESS },
+        sepolia: { address: ROUTER_ADDRESS },
+        baseSepolia: { address: ROUTER_ADDRESS },
+        optimismSepolia: {
+          address: ROUTER_ADDRESS,
+        },
+        arbitrumSepolia: {
+          address: ROUTER_ADDRESS,
+        },
+      }
+    },
+    relayer: {
       abi: relayerAbi,
       startBlock: "latest",
-      network: {
+      chain: {
+        mainnet: { address: RELAYER_ADDRESS },
+        base: { address: RELAYER_ADDRESS },
+        optimism: { address: RELAYER_ADDRESS },
+        arbitrum: { address: RELAYER_ADDRESS },
+        polygon: { address: RELAYER_ADDRESS },
+        zksync: { address: RELAYER_ADDRESS },
+        soneium: { address: RELAYER_ADDRESS },
+        sepolia: { address: RELAYER_ADDRESS },
+        baseSepolia: { address: RELAYER_ADDRESS },
+        optimismSepolia: {
+          address: RELAYER_ADDRESS,
+        },
+        arbitrumSepolia: {
+          address: RELAYER_ADDRESS,
+        },
+      },
+    },
+    proxies: {
+      abi: proxyAbi,
+      startBlock: "latest",
+      chain: {
         mainnet: {
           address: [
             ROUTER_ADDRESS,

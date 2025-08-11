@@ -60,34 +60,6 @@ export const handleRelayerSet = async (
   });
 };
 
-export const handleRelayerWithdrawal = async (
-  context: SecurityEventContext,
-  token: string,
-  amount: bigint
-) => {
-  const threshold = LARGE_TRANSFER_THRESHOLDS[context.chainId] || BigInt(10) * BigInt(10 ** 18);
-  
-  console.log(`💰 Relayer fund withdrawal: ${amount.toString()} of token ${token}`);
-const isLargeAmount = amount >= threshold;
-  
-  await sendSecurityAlert({
-    severity: isLargeAmount ? 'warning' : 'info',
-    title: 'Funds Withdrawn from Relayer',
-    message: `${amount.toString()} of token ${token} withdrawn from relayer contract ${context.contractAddress}`,
-    chainId: context.chainId,
-    txHash: context.txHash,
-    blockNumber: context.blockNumber.toString(),
-    timestamp: context.blockTimestamp.toString(),
-    metadata: {
-      contractAddress: context.contractAddress,
-      token,
-      amount: amount.toString(),
-      isLargeAmount,
-      thresholdUsed: threshold.toString(),
-    },
-  });
-};
-
 export const handleTokenApproval = async (
   context: SecurityEventContext,
   token: string,

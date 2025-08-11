@@ -2,6 +2,12 @@ export const routerAbi = [
   {
     type: "event",
     anonymous: false,
+    inputs: [{ name: "implementation", type: "address", indexed: true }],
+    name: "Upgraded",
+  },
+  {
+    type: "event",
+    anonymous: false,
     inputs: [{ name: "nonce", type: "uint256", indexed: false }],
     name: "Claimed",
   },
